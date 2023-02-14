@@ -1,6 +1,8 @@
 import React from 'react';
 
-class CartItem extends React.Component {
+const CartItem = (props) => {
+
+  // In ajax call and promises in this react won't batching for us and setState call act like synchronous
  /* // testing () {
   //   const promise = new Promise((resolve, reject) => {
   //     setTimeout(() => {
@@ -47,19 +49,24 @@ class CartItem extends React.Component {
         qty: prevState.qty - 1
       }
     });
+    this.setState((prevState) => {
+      return {
+        qty: prevState.qty - 1
+      }
+    }, () => {});
   }*/
-  render () {
-    console.log('this.props', this.props);
-    const { price, title, qty } = this.props.product;
+  
+    
+    const { price, title, qty } = props.product;
     const {
       product,
       onIncreaseQuantity,
       onDecreaseQuantity,
       onDeleteProduct
-    } = this.props;
+    } = props;
     return (
       <div className="cart-item">
-        {this.props.jsx}
+        
         <div className="left-block">
           <img style={styles.image} />
         </div>
@@ -92,7 +99,7 @@ class CartItem extends React.Component {
       </div>
     );
   }
-}
+
 
 const styles = {
   image: {
